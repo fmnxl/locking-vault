@@ -124,9 +124,9 @@ abstract contract LockingVault is ERC1155 {
 
         require((assets = unlockableAssets(id)) != 0, "ZERO_ASSETS");
 
-        _burnReceipt(msg.sender, id, assets);
+        _burnReceipt(owner, id, assets);
 
-        asset.safeTransfer(msg.sender, assets);
+        asset.safeTransfer(receiver, assets);
 
         emit Unlock(msg.sender, receiver, owner, assets);
     }
