@@ -110,7 +110,7 @@ abstract contract LockingVault is ERC1155 {
     }
 
     /*//////////////////////////////////////////////////////////////
-                            ACCOUNTING LOGIC
+                            LOCK UP LOGIC
     //////////////////////////////////////////////////////////////*/
 
     function afterMintReceipt(uint256 id, uint256 assets) internal virtual;
