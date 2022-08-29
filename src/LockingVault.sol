@@ -115,7 +115,7 @@ abstract contract LockingVault is ERC1155 {
 
     function afterMintReceipt(uint256 id, uint256 assets) internal virtual;
 
-    function unlockableAssets(uint256 id) internal virtual returns (uint256);
+    function unlockableAssets(uint256 id) internal view virtual returns (uint256);
 
     function unlockAssets(uint256 id, address receiver, address owner) public virtual returns (uint256 assets) {
         if (msg.sender != owner) {
