@@ -46,10 +46,10 @@ abstract contract LockingVault is ERC1155 {
     //////////////////////////////////////////////////////////////*/
 
     function deposit(uint256 assets, address receiver) public virtual returns (uint256 shares) {
-          // Check for rounding error since we round down in previewDeposit.
+        // Check for rounding error since we round down in previewDeposit.
         require((shares = previewDeposit(assets)) != 0, "ZERO_SHARES");
 
-          // Need to transfer before minting or ERC777s could reenter.
+        // Need to transfer before minting or ERC777s could reenter.
         asset.safeTransferFrom(msg.sender, address(this), assets);
 
         _mintShare(receiver, shares);
@@ -62,7 +62,7 @@ abstract contract LockingVault is ERC1155 {
     function mint(uint256 shares, address receiver) public virtual returns (uint256 assets) {
         assets = previewMint(shares); // No need to check for rounding error, previewMint rounds up.
 
-          // Need to transfer before minting or ERC777s could reenter.
+        // Need to transfer before minting or ERC777s could reenter.
         asset.safeTransferFrom(msg.sender, address(this), assets);
 
         _mintShare(receiver, shares);
@@ -95,7 +95,7 @@ abstract contract LockingVault is ERC1155 {
             require(isApprovedForAll[owner][msg.sender]);
         }
 
-          // Check for rounding error since we round down in previewRedeem.
+        // Check for rounding error since we round down in previewRedeem.
         require((assets = previewRedeem(shares)) != 0, "ZERO_ASSETS");
 
         beforeWithdraw(assets, shares);
